@@ -1,8 +1,11 @@
 class UsersController < ApplicationController
   before_action :logged_in_user, only: [:show, :edit, :update]
   before_action :load_user, only: [:show, :edit, :update]
-  
+  include UserSubjectsHelper
+
   def show
+    @user_course = @user.user_courses.first
+    @course_subjects = @user_course.course.course_subjects
   end
   
   def edit

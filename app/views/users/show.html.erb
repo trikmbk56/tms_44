@@ -4,21 +4,18 @@
   </div>
   <div class="panel-body">
     <div class="row">
-      <div class="col-md-3" align="center"><%= gravatar_for @user %></div>
-      <div class=" col-md-9">
-        <table class="table table-user-information">
-          <tbody>
-            <tr>
-              <td><%= t "profile.name" %></td>
-              <td><%= @user.name %></td>
-            </tr>
-            <tr>
-              <td><%= t "profile.email" %></td>
-              <td><%= @user.email %></td>
-            </tr>
-          </tbody>
-        </table>
-      </div> 
+      <%= render "profile" %>
+    </div>
+    <div class="row">
+      <div class="col-md-8 col-sm-12  col-xs-12">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <%= render "courses_options" %>
+          <%= render "list_subjects" %>
+        </div>
+      </div>
+      <div class="col-md-4 col-sx-12">
+        <h3><%= t "course.activity" %></h3>
+      </div>
     </div>
   </div>
 </div>

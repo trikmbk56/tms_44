@@ -1,0 +1,17 @@
+<div class="col-md-5 col-sm-5 col-xs-6">
+  <%= label_tag t("course.title"), nil%>
+  <%= select_tag "course", options_for_select(@user.user_courses.collect{
+    |user_course| [user_course.course.name, user_course.id]}),
+    class: "form-control select_tag" %>
+</div>
+<div class="col-md-5 col-sm-5 col-xs-6">
+  <%= label_tag t("course.start"), nil, class: "small_label" %>
+  <span class="timestamp">
+    <%= @user_course.course.start_date.strftime(t "time_format") +
+      " - " + @user_course.course.end_date.strftime(t "time_format")%>
+  </span>
+</div>
+<div class="col-md-2 col-sm-2">
+  <% get_status @user_course.status %>
+  <%= button_tag @check_box_text, class: "btn #{@task_class}" %>
+</div>

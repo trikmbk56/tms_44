@@ -1,0 +1,38 @@
+<% @course_subjects.each do |course_subject| %>
+  <% get_subject_status course_subject.id %>
+  <div class="col-md-12">
+    <table class="table"> 
+      <thead> 
+        <tr class="active"> 
+          <th><b><center><%= course_subject.subject.name %></center></b></th>
+          <th><%= t "subject.start" %>
+          <span class="timestamp">
+            <%= course_subject.course.start_date.strftime(t "time_format") +
+              " - " + course_subject.course.end_date.strftime(t "time_format")%>
+          </span>
+          </th>
+          <th>
+            <%= button_tag @check_box_text,
+              class: "btn subject-button-width #{@task_class}" %>
+          </th>
+          <th>
+            <%= link_to t("course.hide"),
+              "javascript:hidden_content('#task-in-profle-" +
+              course_subject.id.to_s + "')", class: "btn btn-default" %>
+          </th>
+        </tr>
+      </thead> 
+      <tbody id=<%= "task-in-profle-" + course_subject.id.to_s %> > 
+        <% course_subject.course_subject_tasks.each do |course_subject_task| %>
+          <% user_task_status course_subject_task.id %>
+          <tr> 
+            <th scope="row"><center><%= course_subject_task.task.name %></center></th> 
+            <td></td> 
+            <td><%= button_tag @check_box_text, class: @task_class %></td> 
+            <td></td> 
+          </tr> 
+        <% end %>
+      </tbody> 
+    </table>
+  </div>
+<% end %>

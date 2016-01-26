@@ -161,3 +161,10 @@ en:
     instruction: "Instruction"
     hide: " (hide) "
     activity: "Activities"
+  course:
+    title: "Course: "
+    start: "Start date: "
+    end: "End date: "
+    hide: "Hide"
+    activity: "Activities"
+  time_format: "%d/%m/%Y"
