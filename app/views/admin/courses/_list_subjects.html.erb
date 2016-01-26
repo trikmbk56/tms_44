@@ -1,0 +1,9 @@
+<b><%= t "admin.course.subject_task" %></b>
+<ul>
+  <% @subjects.each do |subject| %>
+  <li>
+    <%= subject.name %>
+    <%= render "list_tasks", tasks: subject.tasks %>
+  </li>
+  <% end %>
+</ul>

@@ -1,6 +1,6 @@
 <tr> 
   <th><%= course.id %></th> 
-  <td><%= course.name %></td>
+  <td><%= link_to course.name, admin_course_path(course) %></td>
   <td><%= course.description %></td>
   <td><%= course.start_date %></td>
   <td><%= course.end_date %></td>

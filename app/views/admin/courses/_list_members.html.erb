@@ -1,0 +1,17 @@
+<b><%= t "admin.course.admins" %></b>
+<ul>
+  <% @admins.each do |admin| %>
+  <li>
+    <%= admin.email %>
+  </li>
+  <% end %>
+</ul>
+<br>
+<b><%= t "admin.course.users" %></b>
+<ul>
+  <% @users.each do |user| %>
+  <li>
+    <%= user.email %>
+  </li>
+  <% end %>
+</ul>

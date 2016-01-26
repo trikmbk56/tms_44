@@ -1,10 +1,14 @@
 class Admin::CoursesController < ApplicationController
   layout "admin"
   before_action :logged_in_superuser
-  before_action :load_course, only: [:edit, :update, :destroy]
+  before_action :load_course, only: [:edit, :update, :destroy, :show]
+  before_action :load_objects, only: [:show]
 
   def index
     @courses = Course.paginate page: params[:page]
+  end
+
+  def show
   end
 
   def new
@@ -53,5 +57,18 @@ class Admin::CoursesController < ApplicationController
 
   def load_course
     @course = Course.find params[:id]
+  end
+
+  def load_objects
+    @subjects, @admins, @users = Array.new, Array.new, Array.new
+    @course.course_subjects.each do |course_subject|
+      @subjects << course_subject.subject
+    end
+    @course.superuser_courses.each do |superuser_course|
+      @admins << superuser_course.superuser
+    end
+    @course.user_courses.each do |user_course|
+      @users << user_course.user
+    end
   end
 end
