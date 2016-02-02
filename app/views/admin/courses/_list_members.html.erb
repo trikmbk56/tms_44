@@ -27,6 +27,6 @@
   <% end %>
   <% if @course.managed_by?(current_superuser) && @course.not_start? %>
     <li><%= link_to t("admin.course.add_user"),
-      new_admin_course_user_course_path(@course) %></li>
+      admin_course_trainees_path(@course) %></li>
   <% end %>
 </ul>
