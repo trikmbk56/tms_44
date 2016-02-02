@@ -8,8 +8,14 @@
     <% if @course_subjects.any? %>
       <% @course_subjects.each do |course_subject| %>
         <% get_user_subject course_subject %>
-        <%= link_to @user_subject.course_subject.subject.name, @user_subject,
-          class: "btn btn-info btn-width-subject" %>
+        <% if @user_subject.present? %>
+          <%= link_to @user_subject.course_subject.subject.name, @user_subject,
+            class: "btn btn-info btn-width-subject" %>
+        <% else %>
+          <span class="label label-success">
+            <%= course_subject.subject.name %>
+          </span> 
+        <% end %>
       <% end %>
     <% end %>
   </div>

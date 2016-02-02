@@ -1,7 +1,7 @@
 class MembersController < ApplicationController
   before_filter :logged_in_user
   def index
-    @course = Course.find_by params[:id]
+    @course = Course.find params[:course_id]
     if @course
       if @course.user_courses
         @user_courses = @course.user_courses
