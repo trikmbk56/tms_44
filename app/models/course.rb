@@ -1,5 +1,6 @@
 class Course < ActiveRecord::Base
   has_many :user_courses, dependent: :destroy
+  accepts_nested_attributes_for :user_courses, allow_destroy: true
   has_many :course_subjects, dependent: :destroy
   accepts_nested_attributes_for :course_subjects, allow_destroy: true
   has_many :superuser_courses, dependent: :destroy
@@ -20,6 +21,10 @@ class Course < ActiveRecord::Base
       list_course_subjects << course_subject
     end
     list_course_subjects
+  end
+
+  def get_user_course user
+    user_courses.find_by user_id: user.id
   end
 
   def managed_by? superuser
