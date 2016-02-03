@@ -1,0 +1,32 @@
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th></th>
+          <th><%= t "name" %></th>
+          <th><%= t "email" %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @admins.each do |admin| %>
+          <%= f.fields_for :superuser_courses,
+            @course.superuser_courses.build do |builder| %>
+            <tr> 
+              <td><%= builder.check_box :_destroy,
+                {checked: @course.load_admins.include?(admin),
+                disabled: current_superuser?(admin)}, 0, 1 %></td>
+              <td><%= admin.name %></td>
+              <td><%= admin.email %></td>
+            </tr>
+            <% if @course.get_superuser_course admin %>
+              <%= builder.hidden_field :id,
+                value: @course.get_superuser_course(admin).id %>
+            <% end %>
+            <%= builder.hidden_field :superuser_id, value: admin.id %>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

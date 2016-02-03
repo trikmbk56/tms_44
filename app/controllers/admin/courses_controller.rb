@@ -69,7 +69,8 @@ class Admin::CoursesController < ApplicationController
   def course_params
     params.require(:course).permit :name, :description, :start_date, :end_date,
       course_subjects_attributes: [:id, :subject_id, :_destroy],
-      user_courses_attributes: [:id, :user_id, :_destroy]
+      user_courses_attributes: [:id, :user_id, :_destroy],
+      superuser_courses_attributes: [:id, :superuser_id, :_destroy]
   end
 
   def add_current_superuser_to_course

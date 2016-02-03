@@ -4,6 +4,7 @@ class Course < ActiveRecord::Base
   has_many :course_subjects, dependent: :destroy
   accepts_nested_attributes_for :course_subjects, allow_destroy: true
   has_many :superuser_courses, dependent: :destroy
+  accepts_nested_attributes_for :superuser_courses, allow_destroy: true
   
   enum status: [:not_start, :trainning, :finish]
 
@@ -27,15 +28,15 @@ class Course < ActiveRecord::Base
     user_courses.find_by user_id: user.id
   end
 
+  def get_superuser_course superuser
+    superuser_courses.find_by superuser_id: superuser.id
+  end
+
   def managed_by? superuser
     superuser_courses.find_by superuser_id: superuser.id
   end
 
   def has_user? user
-    user_courses.find_by user_id: user.id
-  end
-
-  def get_user_course user
     user_courses.find_by user_id: user.id
   end
 

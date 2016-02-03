@@ -35,6 +35,7 @@ Rails.application.routes.draw do
       resources :user_courses, except: [:edit, :update, :index]
       resources :course_subjects, only: [:update]
       resources :trainees, only: [:index]
+      resources :admins, only: [:index]
     end
   end
 end
